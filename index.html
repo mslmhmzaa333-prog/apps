@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فينوم ستور | Venom Stoor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background-color: #060b13;
+            color: #ffffff;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Top Navigation Bar */
+        .navbar {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .nav-menu {
+            font-size: 24px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-title {
+            font-size: 19px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .nav-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #1e293b;
+        }
+        .btn-login {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Hero Image Container with overlapping phones matching the screenshot */
+        .hero-container {
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            height: 310px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .phone-mockup-v {
+            position: absolute;
+            width: 145px;
+            height: 285px;
+            background: linear-gradient(180deg, #111827, #030712);
+            border: 3.5px solid #2d3748;
+            border-radius: 28px;
+            right: calc(50% - 55px);
+            top: 0;
+            z-index: 2;
+            box-shadow: -15px 15px 35px rgba(0,0,0,0.7);
+            padding: 12px 6px;
+            overflow: hidden;
+        }
+        .phone-mockup-h {
+            position: absolute;
+            width: 250px;
+            height: 125px;
+            background: linear-gradient(145deg, #1f2937, #111827);
+            border: 3.5px solid #2d3748;
+            border-radius: 24px;
+            left: calc(50% - 150px);
+            bottom: 25px;
+            z-index: 1;
+            transform: rotate(-18deg);
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.8);
+        }
+        /* Inner elements of vertical phone */
+        .phone-header {
+            font-size: 8px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 4px;
+            font-weight: bold;
+        }
+        .phone-app {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.03);
+            padding: 4px;
+            border-radius: 6px;
+        }
+        .app-icon-m {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+        }
+        .app-meta-m {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .app-name-m {
+            font-size: 8px;
+            font-weight: bold;
+            color: #f1f5f9;
+        }
+        .app-size-m {
+            font-size: 6px;
+            color: #64748b;
+        }
+        .app-btn-m {
+            font-size: 7px;
+            background: #0284c7;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        /* Headings */
+        .main-headline {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+        .sub-headline {
+            font-size: 15px;
+            color: #94a3b8;
+            text-align: center;
+            margin-bottom: 28px;
+            max-width: 340px;
+            line-height: 1.6;
+        }
+
+        /* Control Buttons */
+        .action-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .btn-action {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        .btn-blue {
+            background-color: #0066cc;
+            color: #ffffff;
+        }
+        .btn-blue:hover {
+            background-color: #0052a3;
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: #0066cc;
+            border: 1px solid #0052a3;
+        }
+        .btn-outline:hover {
+            background-color: rgba(0, 102, 204, 0.08);
+        }
+
+        /* Source Address Box */
+        .source-container {
+            width: 100%;
+            max-width: 400px;
+            background: #0d1527;
+            border: 1px solid #162544;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 45px;
+        }
+        .source-title {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .source-value {
+            background: #070c16;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #38bdf8;
+            word-break: break-all;
+            user-select: all;
+            border: 1px dashed #1d4ed8;
+        }
+
+        /* Features Section */
+        .features-section {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 45px;
+        }
+        .features-title {
+            font-size: 22px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .feature-icon-box {
+            width: 44px;
+            height: 44px;
+            background-color: #0066cc;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .feature-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .feature-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .feature-desc {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* FAQ Accordion Section */
+        .faq-section {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 40px;
+        }
+        .faq-title {
+            font-size: 22px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .faq-item {
+            background-color: #0d1527;
+            border: 1px solid #162544;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .faq-answer {
+            padding: 0 16px;
+            max-height: 0;
+            overflow: hidden;
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.6;
+            transition: max-height 0.25s ease-out, padding 0.25s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 100px;
+            padding-bottom: 16px;
+        }
+        .faq-arrow {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Footer Element */
+        .footer-brand {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 15px;
+            max-width: 300px;
+        }
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .social-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .copyright {
+            font-size: 11px;
+            color: #475569;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navbar Bar -->
+    <div class="navbar">
+        <div class="nav-menu">☰</div>
+        <div class="nav-brand">
+            <span class="nav-title">فينوم ستور</span>
+            <div class="nav-logo" style="background: #2563eb; display:inline-block;"></div>
+        </div>
+        <button class="btn-login">تسجيل الدخول</button>
+    </div>
+
+    <!-- Dual Phone Overlapping Mockup Grid -->
+    <div class="hero-container">
+        <!-- Rotated Underneath Horizontal Phone Mock -->
+        <div class="phone-mockup-h"></div>
+        
+        <!-- Standalone Foreground Vertical Phone Mock -->
+        <div class="phone-mockup-v">
+            <div class="phone-header">تطبيقات Venom</div>
+            
+            <div class="phone-app">
+                <div class="app-icon-m" style="background:#0066cc;"></div>
+                <div class="app-meta-m">
+                    <span class="app-name-m">WhatsApp+</span>
+                    <span class="app-size-m">65.2 MB</span>
+                </div>
+                <span class="app-btn-m">تثبيت</span>
+            </div>
+            
+            <div class="phone-app">
+                <div class="app-icon-m" style="background:#10b981;"></div>
+                <div class="app-meta-m">
+                    <span class="app-name-m">PUBG Mobile</span>
+                    <span class="app-size-m">2.1 GB</span>
+                </div>
+                <span class="app-btn-m">تثبيت</span>
+            </div>
+
+            <div class="phone-app">
+                <div class="app-icon-m" style="background:#f59e0b;"></div>
+                <div class="app-meta-m">
+                    <span class="app-name-m">8 Ball Pool</span>
+                    <span class="app-size-m">140 MB</span>
+                </div>
+                <span class="app-btn-m">تثبيت</span>
+            </div>
+            
+            <div class="phone-app">
+                <div class="app-icon-m" style="background:#ec4899;"></div>
+                <div class="app-meta-m">
+                    <span class="app-name-m">TikTok LRD</span>
+                    <span class="app-size-m">92 MB</span>
+                </div>
+                <span class="app-btn-m">تثبيت</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Headline Info -->
+    <h1 class="main-headline">عالم من التطبيقات</h1>
+    <p class="sub-headline">اكتشف وحمّل أفضل التطبيقات المعدلة بأمان وسهولة تامة</p>
+
+    <!-- Main Action CTA Buttons -->
+    <div class="action-container">
+        <button class="btn-action btn-blue" onclick="alert('سيتم تفعيل نظام الأكواد التلقائي فوراً بعد ربط لوحة التحكم المخصصة')">تفعيل بنظام الاكواد</button>
+        <button class="btn-action btn-outline" onclick="alert('انسخ رابط السورس بالأسفل وضعه داخل تطبيق التوقيع مالتك')">تثبيت المتجر</button>
+    </div>
+
+    <!-- Custom Source URL Field Box -->
+    <div class="source-container">
+        <div class="source-title">رابط سورس المتجر لبرامج التوقيع (ESign / Scarlet):</div>
+        <div class="source-value">https://venomstoor.com/apps.json</div>
+    </div>
+
+    <!-- Features Section Grid Container -->
+    <div class="features-section">
+        <h2 class="features-title">مميزات متجرنا</h2>
+        
+        <div class="feature-item">
+            <div class="feature-icon-box"></div>
+            <div class="feature-meta">
+                <span class="feature-name">التطبيقات</span>
+                <span class="feature-desc">اكثر من 5200 تطبيق ولعبة معدلة جاهزة.</span>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon-box">⎋</div>
+            <div class="feature-meta">
+                <span class="feature-name">تكرار التطبيقات</span>
+                <span class="feature-desc">تكرار التطبيقات بعدد غير محدود وبسهولة.</span>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon-box">✍</div>
+            <div class="feature-meta">
+                <span class="feature-name">توقيع</span>
+                <span class="feature-desc">توقيع ملفات IPA الخارجية بشكل فوري مدمج.</span>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon-box">🛡️</div>
+            <div class="feature-meta">
+                <span class="feature-name">ضمان</span>
+                <span class="feature-desc">ضمان حقيقي يصل إلى 10 أشهر ضد الحظر.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQs Section Container Accordion -->
+    <div class="faq-section">
+        <h2 class="faq-title">الأسئلة الشائعة</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>كيف يمكنني الاشتراك في إحدى الباقات؟</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                يمكنك الاشتراك مباشرة عن طريق الضغط على زر التفعيل بنظام الأكواد واختيار الباقة المناسبة لك وتفعيلها فورا.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>ما هي مدة تفعيل الاشتراك؟</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                يتم تفعيل الاشتراك بشكل فوري وتلقائي على جهازك بمجرد إدخال كود التفعيل المخصص لك.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>ما هي وسائل الدفع المتاحة؟</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                نوفر جميع وسائل الدفع المحلية داخل العراق مثل زين كاش، آسيا حوالة، بالإضافة إلى بطاقات الماستر كارد.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Row Section -->
+    <div class="footer-brand">فينوم ستور</div>
+    <div class="footer-text">اختيارك لنا ليس عبثاً، بل هو بداية تليق بك وبجهازك.</div>
+    
+    <div class="social-row">
+        <a href="#" class="social-btn">✈</a>
+        <a href="#" class="social-btn">📸</a>
+    </div>
+    
+    <div class="copyright">جميع الحقوق محفوظة © فينوم ستور</div>
+
+    <script>
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

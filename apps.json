@@ -1,0 +1,25 @@
+{
+  "name": "فينوم ستور | Venom Stoor",
+  "identifier": "com.venomstoor.apps",
+  "description": "متجر فينوم للتطبيقات المعدلة والألعاب المطورة للأيفون والأيباد",
+  "apps": [
+    {
+      "name": "PUBG Mobile Mod",
+      "bundleIdentifier": "com.tencent.ig.venom",
+      "version": "3.1.0",
+      "size": 2100000000,
+      "icon": "https://venomstoor.com/icons/pubg.png",
+      "downloadURL": "https://venomstoor.com/ipa/pubg.ipa",
+      "localizedDescription": "ببجي موبايل معدلة مع مميزات حصرية وأدوات كشف بدون روت وبدون حظر."
+    },
+    {
+      "name": "8 Ball Pool Line",
+      "bundleIdentifier": "com.miniclip.eightballpool.venom",
+      "version": "5.14.0",
+      "size": 120000000,
+      "icon": "https://venomstoor.com/icons/8ball.png",
+      "downloadURL": "https://venomstoor.com/ipa/8ball.ipa",
+      "localizedDescription": "لعبة 8 بال بول مع تفعيل الخطوط الطويلة بشكل تلقائي وآمن."
+    }
+  ]
+}
